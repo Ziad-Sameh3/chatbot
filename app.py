@@ -33,11 +33,12 @@ def fetch_csv_from_url(csv_url):
 # Function to process the chatbot query and fetch CSV data
 def process_chatbot_request(data):
     # Extract the URLs from the request body
-    best_formations_url = data.get("best_formations_url", "")
-    generated_player_data_url = data.get("generated_player_data_url", "")
-    my_team_url = data.get("my_team_url", "")
-    opponent_team_url = data.get("opponent_team_url", "")
-    selected_players_url = data.get("selected_players_url", "")
+    file_urls = data.get("files", {})
+    best_formations_url = file_urls.get("best_formations_url", "")
+    generated_player_data_url = file_urls.get("generated_player_data_url", "")
+    my_team_url = file_urls.get("my_team_url", "")
+    opponent_team_url = file_urls.get("opponent_team_url", "")
+    selected_players_url = file_urls.get("selected_players_url", "")
 
     # Fetch CSV data from the provided URLs
     best_formations = fetch_csv_from_url(best_formations_url)
